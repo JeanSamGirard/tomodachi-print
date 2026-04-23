@@ -15,7 +15,7 @@ const data = JSON.parse(fs.readFileSync(fileName, "utf8"));
 let currentColor = { h: 0, s: 0, b: 0 };
 let currentPosition = { x: 0, y: 0 };
 
-let macro = "# Generated with tomodachi-print\n";
+let macro = "";
 
 data.palette.forEach((color, i) => {
   const targetColor = toTomodachiColor(color);
