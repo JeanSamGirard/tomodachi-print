@@ -7,7 +7,7 @@ import { macroWait } from "./wait.js";
 export const macroPickColor = (current, target) => {
   // Open the color menu
   let macro =
-    macroPress(BUTTONS.Y) + +macroWait() + macroPress(BUTTONS.Y) + macroWait();
+    macroPress(BUTTONS.Y) + macroWait() + macroPress(BUTTONS.Y) + macroWait();
 
   // Pick the hue
   const hDiff = target.h - current.h;
