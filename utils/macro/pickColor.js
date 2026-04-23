@@ -11,7 +11,7 @@ export const macroPickColor = (current, target) => {
 
   // Pick the hue
   const hDiff = target.h - current.h;
-  if (hDiff)
+  if (hDiff && target.s > 0 && target.b > 0)
     macro += macroLoop(hDiff, [
       macroPress(hDiff > 0 ? BUTTONS.ZR : BUTTONS.ZL),
       macroWait(),
@@ -19,7 +19,7 @@ export const macroPickColor = (current, target) => {
 
   // Pick the saturation
   const sDiff = target.s - current.s;
-  if (sDiff)
+  if (sDiff && target.b > 0)
     macro += macroLoop(sDiff, [
       macroPress(sDiff > 0 ? BUTTONS.RIGHT : BUTTONS.LEFT),
       macroWait(),
