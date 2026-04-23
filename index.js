@@ -2,6 +2,7 @@ import fs from "node:fs";
 import { toTomodachiColor } from "./utils/toTomodachiColor.js";
 import { macroPickColor } from "./utils/macro/pickColor.js";
 import { macroMoveToAndDraw } from "./utils/macro/moveTo.js";
+import { findClosestPoint } from "./utils/findClosestInGrid.js";
 const fileName = process.argv[2];
 
 if (!fileName) {
@@ -22,15 +23,14 @@ data.palette.forEach((color, i) => {
   macro += macroPickColor(currentColor, targetColor);
   currentColor = targetColor;
 
-  // Loop through all positions and find where that color is used
-  data.pixels.forEach((row, x) => {
-    row.forEach((pixel, y) => {
-      if (pixel === i) {
-        macro += macroMoveToAndDraw(currentPosition, { x, y });
-        currentPosition = { x, y };
-      }
-    });
-  });
+  let targetPosition = findClosestPoint(data.pixels, currentPosition, i);
+  while (targetPosition) {
+    macro += macroMoveToAndDraw(currentPosition, targetPosition);
+    currentPosition = targetPosition;
+    data.pixels[currentPosition.y][currentPosition.x] = null;
+
+    targetPosition = findClosestPoint(data.pixels, currentPosition, i);
+  }
 });
 
 fs.writeFileSync("macro.txt", macro);
