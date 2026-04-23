@@ -18,15 +18,17 @@ let currentPosition = { x: 0, y: 0 };
 let macro = "";
 
 data.palette.forEach((color, i) => {
-  const targetColor = toTomodachiColor(color);
+  const targetColor = toTomodachiColor(color, currentColor);
   macro += macroPickColor(currentColor, targetColor);
   currentColor = targetColor;
 
   // Loop through all positions and find where that color is used
   data.pixels.forEach((row, x) => {
     row.forEach((pixel, y) => {
-      if (pixel === i) macro += macroMoveToAndDraw(currentPosition, { x, y });
-      currentPosition = { x, y };
+      if (pixel === i) {
+        macro += macroMoveToAndDraw(currentPosition, { x, y });
+        currentPosition = { x, y };
+      }
     });
   });
 });

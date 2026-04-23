@@ -3,7 +3,7 @@
 // S = 0 - 212
 // B = 0 - 111
 
-export const toTomodachiColor = (hexColor) => {
+export const toTomodachiColor = (hexColor, currentColor) => {
   const r = parseInt(hexColor.substring(1, 3), 16) / 255;
   const g = parseInt(hexColor.substring(3, 5), 16) / 255;
   const b = parseInt(hexColor.substring(5, 7), 16) / 255;
@@ -28,9 +28,20 @@ export const toTomodachiColor = (hexColor) => {
   const sStd = max === 0 ? 0 : delta / max;
   const bStd = max;
 
-  return {
+  const targetColor = {
     h: Math.round(200 - hStd * (200 / 360)),
     s: Math.round(sStd * 212),
     b: Math.round(bStd * 111),
   };
+
+  // Changing hue is useless if saturation or brightness is 0
+  if (targetColor.s === 0 || targetColor.b === 0) {
+    targetColor.h = currentColor.h;
+  }
+
+  if (targetColor.b === 0) {
+    targetColor.s = currentColor.s;
+  }
+
+  return targetColor;
 };
