@@ -26,6 +26,7 @@ data.palette.forEach((color, i) => {
   data.pixels.forEach((row, x) => {
     row.forEach((pixel, y) => {
       if (pixel === i) macro += macroMoveToAndDraw(currentPosition, { x, y });
+      currentPosition = { x, y };
     });
   });
 });
