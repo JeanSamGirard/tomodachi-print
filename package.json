@@ -1,0 +1,21 @@
+{
+  "name": "tomodachi-print",
+  "version": "1.0.0",
+  "description": "NXBT Macro generator for printing in Tomodachi life living the dream",
+  "homepage": "https://github.com/JeanSamGirard/tomodachi-print#readme",
+  "bugs": {
+    "url": "https://github.com/JeanSamGirard/tomodachi-print/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JeanSamGirard/tomodachi-print.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  }
+}
