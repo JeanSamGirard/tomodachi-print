@@ -4,7 +4,7 @@ import { macroPress } from "./press.js";
 import { macroWait } from "./wait.js";
 
 // Return a macro to move the cursor to the target position from the current position
-export const macroMoveToAndDraw = (current, target) => {
+export const macroMoveTo = (current, target) => {
   let macro = "";
 
   // Move X
@@ -22,8 +22,6 @@ export const macroMoveToAndDraw = (current, target) => {
       macroPress(yDiff > 0 ? BUTTONS.DOWN : BUTTONS.UP),
       macroWait(),
     ]);
-
-  macro += macroPress(BUTTONS.A) + macroWait();
 
   return macro;
 };

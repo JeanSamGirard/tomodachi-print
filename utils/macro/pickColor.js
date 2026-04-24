@@ -4,10 +4,19 @@ import { macroPress } from "./press.js";
 import { macroWait } from "./wait.js";
 
 // Return a macro to open the color picker and move to the target color from the current color
-export const macroPickColor = (current, target) => {
+export const macroPickColor = (currentIndex, targetIndex, current, target) => {
   // Open the color menu
-  let macro =
-    macroPress(BUTTONS.Y) + macroWait() + macroPress(BUTTONS.Y) + macroWait();
+  let macro = macroPress(BUTTONS.Y) + macroWait();
+
+  const indexDiff = targetIndex - currentIndex;
+  if (indexDiff)
+    macro += macroLoop(indexDiff, [
+      macroPress(indexDiff > 0 ? BUTTONS.DOWN : BUTTONS.UP),
+      macroWait(),
+    ]);
+
+  // Open selector
+  macro += macroPress(BUTTONS.Y) + macroWait();
 
   // Pick the hue
   const hDiff = target.h - current.h;
@@ -30,6 +39,24 @@ export const macroPickColor = (current, target) => {
   if (bDiff)
     macro += macroLoop(bDiff, [
       macroPress(bDiff > 0 ? BUTTONS.UP : BUTTONS.DOWN),
+      macroWait(),
+    ]);
+
+  // Select the color
+  macro += macroPress(BUTTONS.A) + macroWait();
+
+  return macro;
+};
+
+export const macroSwitchColor = (current, target) => {
+  // Open the color sidebar without opening the menu
+  let macro = macroPress(BUTTONS.Y) + macroWait();
+
+  // Pick the color
+  const indexDiff = target - current;
+  if (indexDiff)
+    macro += macroLoop(indexDiff, [
+      macroPress(indexDiff > 0 ? BUTTONS.DOWN : BUTTONS.UP),
       macroWait(),
     ]);
 

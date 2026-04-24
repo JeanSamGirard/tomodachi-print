@@ -32,6 +32,8 @@ export const toTomodachiColor = (hexColor, currentColor) => {
     h: Math.round(201 - hStd * (201 / 360)),
     s: Math.round(sStd * 211),
     b: Math.round(bStd * 110),
+    hex: hexColor,
+    usage: performance.now(),
   };
 
   // Changing hue is useless if saturation or brightness is 0
@@ -44,4 +46,8 @@ export const toTomodachiColor = (hexColor, currentColor) => {
   }
 
   return targetColor;
+};
+
+export const formatTomoColor = (color) => {
+  return `h${color.h}|s${color.s}|b${color.b}`;
 };
