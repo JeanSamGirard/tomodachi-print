@@ -33,8 +33,10 @@ let currentPosition = { x: 0, y: 0 };
 
 let macro = "";
 
+const lineSkip = parseInt(process.argv[3]);
+
 data.pixels.forEach((row, y) => {
-  if (row.every((pixel) => pixel === null)) return;
+  if (row.every((pixel) => pixel === null) || y < lineSkip) return;
 
   // Collect unique colors needed for this row in order of first appearance
   const uniqueColors = [];
@@ -169,7 +171,7 @@ function calculateTotalTime(macroStr) {
     if (line.startsWith("LOOP ")) {
       const n = parseInt(line.split(" ")[1]);
       loopMultiplier = n;
-    } else if (line.trim() === '0.1s') {
+    } else if (line.trim() === "0.1s") {
       time += 100 * loopMultiplier;
     } else if (line.trim().endsWith(" 0.08s")) {
       time += 80 * loopMultiplier;
