@@ -171,8 +171,8 @@ function calculateTotalTime(macroStr) {
     if (line.startsWith("LOOP ")) {
       const n = parseInt(line.split(" ")[1]);
       loopMultiplier = n;
-    } else if (line.trim() === "0.1s") {
-      time += 100 * loopMultiplier;
+    } else if (line.trim() === "0.15s") {
+      time += 150 * loopMultiplier;
     } else if (line.trim().endsWith(" 0.08s")) {
       time += 80 * loopMultiplier;
     } else if (!line.startsWith("\t") && loopMultiplier > 1) {
