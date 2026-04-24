@@ -1,7 +1,7 @@
 // Tomodachi life color space
-// H = 0 - 200 (Inverted from regular HSB)
-// S = 0 - 212
-// B = 0 - 111
+// H = 0 - 201 (Inverted from regular HSB)
+// S = 0 - 211
+// B = 0 - 110
 
 export const toTomodachiColor = (hexColor, currentColor) => {
   const r = parseInt(hexColor.substring(1, 3), 16) / 255;
@@ -29,9 +29,9 @@ export const toTomodachiColor = (hexColor, currentColor) => {
   const bStd = max;
 
   const targetColor = {
-    h: Math.round(200 - hStd * (200 / 360)),
-    s: Math.round(sStd * 212),
-    b: Math.round(bStd * 111),
+    h: Math.round(201 - hStd * (201 / 360)),
+    s: Math.round(sStd * 211),
+    b: Math.round(bStd * 110),
   };
 
   // Changing hue is useless if saturation or brightness is 0
