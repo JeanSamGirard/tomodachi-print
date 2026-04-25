@@ -37,7 +37,8 @@ node --version
 ><img width="315" height="178" alt="image" src="https://github.com/user-attachments/assets/dff93178-f82d-4156-b382-485f3f49f366" />
 
 3. Adjust any other options you wish until the preview looks like what you want
->TODO img
+><img width="1086" height="740" alt="image" src="https://github.com/user-attachments/assets/2902ca4f-1382-43ba-806e-308e7fc732b5" />
+
 
 4. Download as JSON
 ><img width="477" height="284" alt="image" src="https://github.com/user-attachments/assets/1c8a0170-c6a8-4845-813e-ba5290f314fe" />
