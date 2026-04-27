@@ -3,6 +3,7 @@
 NXBT Macro generator for printing in Tomodachi Life: Living the Dream.
 This is a Node.js application that transforms JSON files exported from the [Living the Grid](https://living-the-grid.com/) website into an NXBT-compatible macro file.
 
+_Note: Tested with version 2 of the Living the grid JSON format_
 _Note: In this README **"NXBT"** is usually used to refer to both NXBT and NUXBT as they are mostly interchangeable_
 
 ## Prerequisites
