@@ -19,7 +19,7 @@ export const macroPickColor = (currentIndex, targetIndex, current, target) => {
   macro += macroPress(BUTTONS.Y) + macroWait();
 
   // Pick the hue
-  const hDiff = target.h - current.h;
+  const hDiff = target.press.h - current.press.h;
   if (hDiff)
     macro += macroLoop(hDiff, [
       macroPress(hDiff > 0 ? BUTTONS.ZR : BUTTONS.ZL),
@@ -27,7 +27,7 @@ export const macroPickColor = (currentIndex, targetIndex, current, target) => {
     ]);
 
   // Pick the saturation
-  const sDiff = target.s - current.s;
+  const sDiff = target.press.s - current.press.s;
   if (sDiff)
     macro += macroLoop(sDiff, [
       macroPress(sDiff > 0 ? BUTTONS.RIGHT : BUTTONS.LEFT),
@@ -35,7 +35,7 @@ export const macroPickColor = (currentIndex, targetIndex, current, target) => {
     ]);
 
   // Pick the brightness
-  const bDiff = target.b - current.b;
+  const bDiff = target.press.b - current.press.b;
   if (bDiff)
     macro += macroLoop(bDiff, [
       macroPress(bDiff > 0 ? BUTTONS.UP : BUTTONS.DOWN),
