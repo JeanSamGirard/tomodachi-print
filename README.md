@@ -3,7 +3,6 @@
 NXBT Macro generator for printing in Tomodachi Life: Living the Dream.
 This is a Node.js application that transforms JSON files exported from the [Living the Grid](https://living-the-grid.com/) website into an NXBT-compatible macro file.
 
-_Note: Tested with version 2 of the Living the grid JSON format_
 _Note: In this README **"NXBT"** is usually used to refer to both NXBT and NUXBT as they are mostly interchangeable_
 
 ## Prerequisites
@@ -56,6 +55,8 @@ node --version
 
 4. Download as JSON
    > <img width="477" height="284" alt="image" src="https://github.com/user-attachments/assets/1c8a0170-c6a8-4845-813e-ba5290f314fe" />
+   > <br>
+   > This project currently works with version 2 of the Living the grid JSON format (as of 2026-04-27 it's the only available version, but if more get added in the future, you should choose version 2).
 
 ## How to use
 
@@ -90,11 +91,12 @@ To minimize the amount of time spent selecting colors, the macro will try to "pr
 
 Before starting a row or changing the color state, a comment line is added in the macro, this comment line is ignored by NXBT, but the custom python script that comes with this project prints those comments to the console and takes an optional argument that allows starting a macro from a given comment checkpoint.
 
-| Comment type                             | Description                                                                                                                                                                     |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| #y.xr# Start row                         | Starting from the line y at the xth pixel the next operation is moving to the next row                                                                                          |
-| #y.xs# Color switch Slot n -> m          | From the line y at the xth pixel the next operation is to press Y and change color from the nth slot to the mth slot                                                            |
-| #y.xs# Color pick Slot n -> m : c1 -> c2 | From the line y at the xth pixel the next operation is to press Y and move from the nth slot to the mth slot then press Y again to change the color in the m slot from c1 to c2 |
+| Comment type                                   | Description                                                                                                                                                                                                                |
+| ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| #y.xp-n# Color preload Slot n -> m : c1 -> c2  | (Preloading a color before starting a row) From the line y at the xth pixel the next operation is to press Y and move from the nth slot to the mth slot then press Y again to change the color in the m slot from c1 to c2 |
+| #y.xr# Start row                               | Starting from the line y at the xth pixel the next operation is moving to the next row                                                                                                                                     |
+| #y.xs# Color switch Slot n -> m : expecting c1 | From the line y at the xth pixel the next operation is to press Y and change color from the nth slot to the mth slot (the expected color in the mth slot is c1                                                             |
+| #y.xs# Color pick Slot n -> m : c1 -> c2       | From the line y at the xth pixel the next operation is to press Y and move from the nth slot to the mth slot then press Y again to change the color in the m slot from c1 to c2                                            |
 
 _Note: (x, y) coordinates start at 0 the starting point of a macro is (0, 0)_  
 _Note: Color slots are numbered from 0 at the top to 8 at the bottom_
@@ -103,7 +105,22 @@ _Note: Color slots are numbered from 0 at the top to 8 at the bottom_
 
 ### Preparing the game
 
-TODO steps to prepare the game to receive the macro inputs
+1. Choose the 1px brush
+
+   > <img width="4032" height="2268" alt="20260427_201422" src="https://github.com/user-attachments/assets/7e2c33c2-c737-4307-857f-781095e636ab" />
+
+2. Set the palette to use the color range (Press R)
+   
+   > <img width="4032" height="2268" alt="20260427_201517" src="https://github.com/user-attachments/assets/e2fbf94a-c600-4c97-84e1-07106d2a6d66" />
+   > <br>
+   > Don't change any of the colors, the macro expects the default colors in each palette slot.
+   > Keep the first slot (black) selected.
+
+3. Move the cursor to the top left pixel
+   > <img width="4032" height="2268" alt="20260427_201606" src="https://github.com/user-attachments/assets/9fc5b570-544e-4a83-943c-63bd29adab7e" />
+   > <br>
+   > Don't zoom, the macro moves one pixel at a time by pressing the DPAD, but when zoomed the cursor won't move if it's a the edge of the screen.
+   > To make sure you selected the correct pixel you can press A to draw a black dot and undo it with L.
 
 ### Running the macro
 
